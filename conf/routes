@@ -1,0 +1,12 @@
+#GET     /               controllers.Home.index
+#GET     /date           controllers.Home.random
+# GET     /async          controllers.Home.async
+#GET     /echo/:text     controllers.Home.echo(text)
+#GET     /server-error   controllers.Default.error
+
+GET     /products/        controllers.Products.list()
+GET     /products/new     controllers.Products.newProduct()
+GET     /products/:ean    controllers.Products.details(ean: String)
+POST    /products/        controllers.Products.save()
+
+GET     /assets/*file     controllers.Assets.at(path="/public", file)
