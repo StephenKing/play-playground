@@ -4,10 +4,10 @@
   <h1>SimCard form</h1>
   @helper.form(action = routes.SimCards.save()) {
     <fieldset>
-      <legend>SimCard (@productsForm("ean").valueOr("new")</legend>
-      @helper.inputText(productsForm("ean"), '_label -> "EAN")
-      @helper.inputText(productsForm("name"),'_label -> "Name")
-      @helper.textarea(productsForm("description"), '_label -> "Description")
+      <legend>SimCard (@productsForm("imsi").valueOr("new"))</legend>
+      @helper.inputText(productsForm("imsi"), '_label -> "IMSI")
+      @helper.inputText(productsForm("msisdn"),'_label -> "MSISDN")
+      @helper.inputText(productsForm("owner"), '_label -> "Owner")
     </fieldset>
     <input type="submit" class="btn btn-primary" value="Save">
     <a class="btn" href="@routes.SimCards.list()">Cancel</a>

@@ -5,8 +5,9 @@ GET     /               controllers.Home.index
 #GET     /server-error   controllers.Default.error
 
 GET         /simcards/            controllers.SimCards.list()
-GET         /simcards/new         controllers.SimCards.newProduct()
-GET         /simcards/:ean        controllers.SimCards.details(ean: String)
+GET         /simcards/new         controllers.SimCards.newSim()
+GET         /simcards/:imsi       controllers.SimCards.details(imsi: String)
 POST        /simcards/            controllers.SimCards.save()
+DELETE      /simcards/:imsi       controllers.SimCards.delete(imsi: String)
 
 GET         /assets/*file         controllers.Assets.at(path="/public", file)

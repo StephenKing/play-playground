@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import play.Logger;
+import play.data.validation.Constraints;
 
 public class SimCard {
 
@@ -9,43 +11,70 @@ public class SimCard {
 
   static {
     simCards = new ArrayList<SimCard>();
-    simCards.add(new SimCard("1234567", "test", "Foo"));
-    simCards.add(new SimCard("2234567", "test2", "Bar"));
+    simCards.add(new SimCard("1234567", "111111111", "Steffen"));
+    simCards.add(new SimCard("2234567", "222222222", "Max"));
   }
 
-  public String ean;
-  public String name;
-  public String description;
+  @Constraints.Required
+  public String imsi;
+  @Constraints.Required
+  public String msisdn;
+  public String owner;
+
 
   public SimCard() {}
 
-  public SimCard(String ean, String name, String description) {
-    this.ean = ean;
-    this.name = name;
-    this.description = description;
+  public SimCard(String imsi, String msisdn, String owner) {
+    this.imsi = imsi;
+    this.msisdn = msisdn;
+    this.owner = owner;
+  }
+
+  public String getMsisdn() {
+    return msisdn;
+  }
+
+  public String getImsi() {
+    return imsi;
+  }
+
+  public String getOwner() {
+    return owner;
+  }
+
+  public void setImsi(String imsi) {
+    this.imsi = imsi;
+  }
+
+  public void setMsisdn(String msisdn) {
+    this.msisdn = msisdn;
+  }
+
+  public void setOwner(String owner) {
+    this.owner = owner;
   }
 
   public String toString() {
-    return String.format("%s/%s", ean, name);
+    return String.format("[imsi:%s, msisdn:%s, owner:%s]", imsi, msisdn, owner);
   }
 
   public static List<SimCard> findAll() {
     return new ArrayList<>(simCards);
   }
 
-  public static SimCard findByEan(String ean) {
+  public static SimCard findByImsi(String imsi) {
     for (SimCard candidate : simCards) {
-      if (candidate.ean.equals(ean)) {
+      if (candidate.imsi.equals(imsi)) {
         return candidate;
       }
     }
     return null;
   }
 
-  public static List<SimCard> findByName(String term) {
+  public static List<SimCard> findByName(String name) {
     final List<SimCard> results = new ArrayList<>();
     for (SimCard candidate : simCards) {
-      if (candidate.name.toLowerCase().contains(term.toLowerCase())) {
+      if (candidate.owner.toLowerCase().contains(name.toLowerCase())) {
         results.add(candidate);
       }
     }
@@ -57,7 +86,12 @@ public class SimCard {
   }
 
   public void save() {
-    simCards.remove(findByEan(this.ean));
+    SimCard simcard = findByImsi(this.imsi);
+    if (simcard != null) {
+      Logger.info("Removing {}", this);
+      simCards.remove(simcard.imsi);
+    }
+    Logger.info("Adding {}", this);
     simCards.add(this);
   }
 }

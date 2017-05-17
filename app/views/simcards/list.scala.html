@@ -6,19 +6,44 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>EAN</th>
-        <th>Name</th>
+        <th>IMSI</th>
+        <th>MSISDN</th>
         <th>Owner</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
     @for(simCard <- simCards) {
       <tr>
-        <td><a href="@routes.SimCards.details(simCard.ean)">@simCard.ean</a></td>
-        <td><a href="@routes.SimCards.details(simCard.ean)">@simCard.name</a></td>
-        <td><a href="@routes.SimCards.details(simCard.ean)">@simCard.description</a></td>
+        <td><a href="@routes.SimCards.details(simCard.imsi)">@simCard.imsi</a></td>
+        <td><a href="@routes.SimCards.details(simCard.imsi)">@simCard.msisdn</a></td>
+        <td><a href="@routes.SimCards.details(simCard.imsi)">@simCard.owner</a></td>
+        <td>
+          <a href="@routes.SimCards.details(simCard.imsi)">
+            <i class="icon icon-pencil"></i></a>
+          <a onclick="del('@routes.SimCards.delete(simCard.imsi)')">
+            <i class="icon icon-trash"></i>Delete</a>
+        </td>
       </tr>
     }
     </tbody>
   </table>
+
+  <a class="btn btn-primary" href="@routes.SimCards.newSim()"><i class="icon-plus"></i> New</a>
+  <script type="application/javascript" src="https://code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script>
+      function del(urlToDelete) {
+        $.ajax({
+          url: urlToDelete,
+          type: 'DELETE',
+          success: function(results) {
+// Refresh the page
+            location.reload();
+          }
+        });
+      }
+  </script>
+
 }
+
+
