@@ -1,15 +1,15 @@
-@(productsForm: Form[Product])
+@(productsForm: Form[SimCard])
 
-@main("Product form") {
-  <h1>Product form</h1>
-  @helper.form(action = routes.Products.save()) {
+@main("SimCard form") {
+  <h1>SimCard form</h1>
+  @helper.form(action = routes.SimCards.save()) {
     <fieldset>
-      <legend>Product (@productsForm("ean").valueOr("new")</legend>
+      <legend>SimCard (@productsForm("ean").valueOr("new")</legend>
       @helper.inputText(productsForm("ean"), '_label -> "EAN")
       @helper.inputText(productsForm("name"),'_label -> "Name")
       @helper.textarea(productsForm("description"), '_label -> "Description")
     </fieldset>
     <input type="submit" class="btn btn-primary" value="Save">
-    <a class="btn" href="@routes.Products.list()">Cancel</a>
+    <a class="btn" href="@routes.SimCards.list()">Cancel</a>
   }
 }
