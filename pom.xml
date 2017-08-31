@@ -21,6 +21,18 @@
         <scala.version>2.11.11</scala.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-kamon-io-snapshots</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/kamon-io/snapshots</url>
+        </repository>
+    </repositories>
+
+
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -71,6 +83,33 @@
             <artifactId>mockito-core</artifactId>
           <version>1.9.5</version>
           <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.10</version>
+        </dependency>
+        <dependency>
+            <groupId>io.kamon</groupId>
+            <artifactId>kamon-core_2.11</artifactId>
+            <version>1.0.0-RC1-670f32d19a30283a39a0519a74fc5c6a0efd379b</version>
+        </dependency>
+        <dependency>
+            <groupId>io.kamon</groupId>
+            <artifactId>kamon-prometheus_2.11</artifactId>
+            <version>1.0.0-RC1-913b82fb85e293bc5ccee6fc46af428cb5834e67</version>
+        </dependency>
+        <dependency>
+            <groupId>io.kamon</groupId>
+            <artifactId>kamon-play-2.5_2.11</artifactId>
+            <version>1.0.0-RC1-1d8dad8eba5f151dd400693096961753ee6c383e</version>
+            <!--<type>pom</type>-->
+        </dependency>
+        <dependency>
+            <groupId>io.kamon</groupId>
+            <artifactId>kamon-jaeger_2.11</artifactId>
+            <version>1.0.0-RC1-9eec74a0c7f4332336928431852104cc9ad19373</version>
         </dependency>
     </dependencies>
 
